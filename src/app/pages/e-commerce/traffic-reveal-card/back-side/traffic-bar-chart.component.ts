@@ -1,41 +1,50 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
-import { LayoutService } from '../../../../@core/utils/layout.service';
-
-declare const echarts: any;
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
+import { LayoutService } from "@app/core/utils/layout.service";
+import { NbThemeService } from "@nebular/theme";
+import { EChartsOption, graphic } from "echarts";
+import { NgxEchartsModule } from "ngx-echarts";
+import { takeWhile } from "rxjs/operators";
 
 @Component({
-  selector: 'ngx-traffic-bar-chart',
+  selector: "ngx-traffic-bar-chart",
   template: `
-    <div echarts
-         [options]="option"
-         class="echart"
-         (chartInit)="onChartInit($event)">
-    </div>
+    <div
+      echarts
+      [options]="option"
+      class="echart"
+      (chartInit)="onChartInit($event)"
+    ></div>
   `,
+  imports: [NgxEchartsModule],
 })
-export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnChanges {
-
-  @Input() data: number[];
-  @Input() labels: string[];
-  @Input() formatter: string;
+export class TrafficBarChartComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() data: number[] = [];
+  @Input() labels: string[] = [];
+  @Input() formatter!: string;
 
   private alive = true;
 
-  option: any = {};
+  option!: EChartsOption;
   echartsInstance: any;
 
-  constructor(private theme: NbThemeService,
-              private layoutService: LayoutService) {
-    this.layoutService.onSafeChangeLayoutSize()
-      .pipe(
-        takeWhile(() => this.alive),
-      )
+  constructor(
+    private theme: NbThemeService,
+    private layoutService: LayoutService
+  ) {
+    this.layoutService
+      .onSafeChangeLayoutSize()
+      .pipe(takeWhile(() => this.alive))
       .subscribe(() => this.resizeChart());
   }
 
-  onChartInit(ec) {
+  onChartInit(ec: any) {
     this.echartsInstance = ec;
   }
 
@@ -48,9 +57,11 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.data.isFirstChange() && !changes.labels.isFirstChange()) {
       this.echartsInstance.setOption({
-        series: [{
-          data: this.data,
-        }],
+        series: [
+          {
+            data: this.data,
+          },
+        ],
         xAxis: {
           data: this.labels,
         },
@@ -61,13 +72,14 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
     }
   }
 
-  ngAfterViewInit() {
-    this.theme.getJsTheme()
+  ngOnInit(): void {
+    this.theme
+      .getJsTheme()
       .pipe(takeWhile(() => this.alive))
-      .subscribe(config => {
-        const trafficTheme: any = config.variables.trafficBarEchart;
+      .subscribe((config) => {
+        const trafficTheme: any = config.variables?.trafficBarEchart;
 
-        this.option = Object.assign({}, {
+        this.option = {
           grid: {
             left: 0,
             top: 0,
@@ -76,11 +88,11 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
             containLabel: true,
           },
           xAxis: {
-            type : 'category',
-            data : this.labels,
+            type: "category",
+            data: this.labels,
             axisLabel: {
-              color: trafficTheme.axisTextColor,
-              fontSize: trafficTheme.axisFontSize,
+              color: trafficTheme?.axisTextColor,
+              fontSize: trafficTheme?.axisFontSize,
             },
             axisLine: {
               show: false,
@@ -100,51 +112,51 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
             axisTick: {
               show: false,
             },
-            boundaryGap: [0, '5%'],
+            boundaryGap: [0, "5%"],
           },
           tooltip: {
             axisPointer: {
-              type: 'shadow',
+              type: "shadow",
             },
             textStyle: {
-              color: trafficTheme.tooltipTextColor,
-              fontWeight: trafficTheme.tooltipFontWeight,
+              color: trafficTheme?.tooltipTextColor,
+              fontWeight: trafficTheme?.tooltipFontWeight,
               fontSize: 16,
             },
-            position: 'top',
-            backgroundColor: trafficTheme.tooltipBg,
-            borderColor: trafficTheme.tooltipBorderColor,
+            position: "top",
+            backgroundColor: trafficTheme?.tooltipBg,
+            borderColor: trafficTheme?.tooltipBorderColor,
             borderWidth: 1,
             formatter: this.formatter,
-            extraCssText: trafficTheme.tooltipExtraCss,
+            extraCssText: trafficTheme?.tooltipExtraCss,
           },
           series: [
             {
-              type: 'bar',
-              barWidth: '40%',
+              type: "bar",
+              barWidth: "40%",
               data: this.data,
               itemStyle: {
-                normal: {
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                color: new graphic.LinearGradient(0, 0, 0, 1, [
+                  {
                     offset: 0,
-                    color: trafficTheme.gradientFrom,
-                  }, {
+                    color: trafficTheme?.gradientFrom,
+                  },
+                  {
                     offset: 1,
-                    color: trafficTheme.gradientTo,
-                  }]),
-                  opacity: 1,
-                  shadowColor: trafficTheme.gradientFrom,
-                  shadowBlur: trafficTheme.shadowBlur,
-                },
+                    color: trafficTheme?.gradientTo,
+                  },
+                ]),
+                opacity: 1,
+                shadowColor: trafficTheme?.gradientFrom,
+                shadowBlur: trafficTheme?.shadowBlur,
               },
             },
           ],
-        });
-    });
+        };
+      });
   }
 
   ngOnDestroy() {
     this.alive = false;
   }
-
 }

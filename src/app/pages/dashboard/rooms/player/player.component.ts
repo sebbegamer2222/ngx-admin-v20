@@ -1,19 +1,23 @@
-import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
-import { PlayerService, Track } from '../../../../@core/utils/player.service';
+import { Component, HostBinding, Input, OnDestroy } from "@angular/core";
+import { MatRipple } from "@angular/material/core";
+import { PlayerService, Track } from "@app/core/utils/player.service";
+import { TimingPipe } from "@app/theme/pipes/timing.pipe";
+import { NbButtonModule, NbCardModule, NbIconModule } from "@nebular/theme";
 
 @Component({
-  selector: 'ngx-player',
-  styleUrls: ['./player.component.scss'],
-  templateUrl: './player.component.html',
+  selector: "ngx-player",
+  styleUrls: ["./player.component.scss"],
+  templateUrl: "./player.component.html",
+  imports: [TimingPipe, NbButtonModule, NbIconModule, NbCardModule, MatRipple],
 })
 export class PlayerComponent implements OnDestroy {
   @Input()
-  @HostBinding('class.collapsed')
-  collapsed: boolean;
+  @HostBinding("class.collapsed")
+  collapsed!: boolean;
 
   track: Track;
-  player: HTMLAudioElement;
-  shuffle: boolean;
+  player!: HTMLAudioElement;
+  shuffle!: boolean;
 
   constructor(private playerService: PlayerService) {
     this.track = this.playerService.random();
@@ -22,7 +26,7 @@ export class PlayerComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.player.pause();
-    this.player.src = '';
+    this.player.src = "";
     this.player.load();
   }
 
@@ -66,20 +70,20 @@ export class PlayerComponent implements OnDestroy {
     this.player.loop = !this.player.loop;
   }
 
-  setVolume(volume: number) {
-    this.player.volume = volume / 100;
+  setVolume(volume: string | number) {
+    this.player.volume = +volume / 100;
   }
 
   getVolume(): number {
     return this.player.volume * 100;
   }
 
-  setProgress(duration: number) {
-    this.player.currentTime = this.player.duration * duration / 100;
+  setProgress(duration: string | number) {
+    this.player.currentTime = (this.player.duration * +duration) / 100;
   }
 
   getProgress(): number {
-    return this.player.currentTime / this.player.duration * 100 || 0;
+    return (this.player.currentTime / this.player.duration) * 100 || 0;
   }
 
   private createPlayer() {

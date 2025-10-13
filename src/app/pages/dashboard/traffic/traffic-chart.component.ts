@@ -1,48 +1,53 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../@core/utils';
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { LayoutService } from "@app/core/utils";
+import { NbThemeService } from "@nebular/theme";
+import { EChartsOption, graphic } from "echarts";
+import { NgxEchartsModule } from "ngx-echarts";
+import { delay, takeWhile } from "rxjs/operators";
 
 @Component({
-  selector: 'ngx-traffic-chart',
+  selector: "ngx-traffic-chart",
   template: `
-    <div echarts
-         [options]="option"
-         class="echart"
-         (chartInit)="onChartInit($event)">
-    </div>
+    <div
+      echarts
+      [options]="option"
+      class="echart"
+      (chartInit)="onChartInit($event)"
+    ></div>
   `,
+  imports: [NgxEchartsModule],
 })
-export class TrafficChartComponent implements AfterViewInit, OnDestroy {
-
+export class TrafficChartComponent implements OnInit, OnDestroy {
   private alive = true;
 
-  @Input() points: number[];
+  @Input() points: number[] = [];
 
-  type = 'month';
-  types = ['week', 'month', 'year'];
-  option: any = {};
+  type = "month";
+  types = ["week", "month", "year"];
+  option!: EChartsOption;
   echartsIntance: any;
 
-  constructor(private theme: NbThemeService,
-              private layoutService: LayoutService) {
-    this.layoutService.onSafeChangeLayoutSize()
-      .pipe(
-        takeWhile(() => this.alive),
-      )
+  constructor(
+    private theme: NbThemeService,
+    private layoutService: LayoutService
+  ) {
+    this.layoutService
+      .onSafeChangeLayoutSize()
+      .pipe(takeWhile(() => this.alive))
       .subscribe(() => this.resizeChart());
   }
 
-  ngAfterViewInit() {
-    this.theme.getJsTheme()
+  ngOnInit() {
+    this.theme
+      .getJsTheme()
       .pipe(
         delay(1),
-        takeWhile(() => this.alive),
+        takeWhile(() => this.alive)
       )
-      .subscribe(config => {
-        const trafficTheme: any = config.variables.traffic;
+      .subscribe((config) => {
+        const trafficTheme: any = config.variables?.traffic;
 
-        this.option = Object.assign({}, {
+        this.option = {
           grid: {
             left: 0,
             top: 0,
@@ -50,12 +55,12 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
             bottom: 0,
           },
           xAxis: {
-            type: 'category',
+            type: "category",
             boundaryGap: false,
             data: this.points,
           },
           yAxis: {
-            boundaryGap: [0, '5%'],
+            boundaryGap: [0, "5%"],
             axisLine: {
               show: false,
             },
@@ -69,96 +74,85 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
               show: true,
               lineStyle: {
                 color: trafficTheme.yAxisSplitLine,
-                width: '1',
+                width: 1,
               },
             },
           },
           tooltip: {
             axisPointer: {
-              type: 'shadow',
+              type: "shadow",
             },
             textStyle: {
               color: trafficTheme.tooltipTextColor,
               fontWeight: trafficTheme.tooltipFontWeight,
               fontSize: 16,
             },
-            position: 'top',
+            position: "top",
             backgroundColor: trafficTheme.tooltipBg,
             borderColor: trafficTheme.tooltipBorderColor,
             borderWidth: 1,
-            formatter: '{c0} MB',
+            formatter: "{c0} MB",
             extraCssText: trafficTheme.tooltipExtraCss,
           },
           series: [
             {
-              type: 'line',
-              symbol: 'circle',
+              type: "line",
+              symbol: "circle",
               symbolSize: 8,
-              sampling: 'average',
+              sampling: "average",
               silent: true,
-              itemStyle: {
-                normal: {
+              emphasis: {
+                itemStyle: {
                   color: trafficTheme.shadowLineDarkBg,
-                },
-                emphasis: {
-                  color: 'rgba(0,0,0,0)',
-                  borderColor: 'rgba(0,0,0,0)',
+                  borderColor: "rgba(0,0,0,0)",
                   borderWidth: 0,
                 },
               },
               lineStyle: {
-                normal: {
-                  width: 2,
-                  color: trafficTheme.shadowLineDarkBg,
-                },
+                width: 2,
+                color: trafficTheme.shadowLineDarkBg,
               },
-              data: this.points.map(p => p - 15),
+              data: this.points.map((p) => p - 15),
             },
             {
-              type: 'line',
-              symbol: 'circle',
+              type: "line",
+              symbol: "circle",
               symbolSize: 6,
-              sampling: 'average',
-              itemStyle: {
-                normal: {
+              sampling: "average",
+              emphasis: {
+                itemStyle: {
                   color: trafficTheme.itemColor,
-                  borderColor: trafficTheme.itemBorderColor,
-                  borderWidth: 2,
-                },
-                emphasis: {
-                  color: 'white',
                   borderColor: trafficTheme.itemEmphasisBorderColor,
                   borderWidth: 2,
                 },
               },
               lineStyle: {
-                normal: {
-                  width: 2,
-                  color: trafficTheme.lineBg,
-                  shadowColor: trafficTheme.lineBg,
-                  shadowBlur: trafficTheme.lineShadowBlur,
-                },
+                width: 2,
+                color: trafficTheme.lineBg,
+                shadowColor: trafficTheme.lineBg,
+                shadowBlur: trafficTheme.lineShadowBlur,
               },
               areaStyle: {
-                normal: {
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                color: new graphic.LinearGradient(0, 0, 0, 1, [
+                  {
                     offset: 0,
                     color: trafficTheme.gradFrom,
-                  }, {
+                  },
+                  {
                     offset: 1,
                     color: trafficTheme.gradTo,
-                  }]),
-                  opacity: 1,
-                },
+                  },
+                ]),
+                opacity: 1,
               },
               data: this.points,
             },
           ],
-        });
-    });
+        };
+      });
   }
 
-  onChartInit(echarts) {
+  onChartInit(echarts: any) {
     this.echartsIntance = echarts;
   }
 

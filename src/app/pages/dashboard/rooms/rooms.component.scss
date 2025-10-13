@@ -1,16 +1,17 @@
-@import '../../../@theme/styles/themes';
-@import 'bootstrap/scss/mixins/breakpoints';
-@import '@nebular/theme/styles/global/breakpoints';
+@use "@nebular/theme/styles/global/breakpoints" as nebular-breakpoints;
+@use "@nebular/theme/styles/theming" as *;
+@use "themes" as *;
 
 @include nb-install-component() {
   ngx-room-selector {
     width: 70%;
-    border-right: nb-theme(divider-width) nb-theme(divider-style) nb-theme(divider-color);
-    background: url('../../../../assets/images/square_pattern.svg') repeat;
+    border-right: nb-theme(divider-width) nb-theme(divider-style)
+      nb-theme(divider-color);
+    background: url("../../../../assets/images/square_pattern.svg") repeat;
     background-size: 75px;
 
     &.dark-background {
-      background-image: url('../../../../assets/images/square_pattern_cosmic.svg');
+      background-image: url("../../../../assets/images/square_pattern_cosmic.svg");
     }
   }
 
@@ -40,12 +41,13 @@
     }
   }
 
-  @include media-breakpoint-down(md) {
+  @include nebular-breakpoints.media-breakpoint-down(md) {
     &.expanded ngx-room-selector {
       display: none;
     }
 
-    ngx-room-selector, ngx-player {
+    ngx-room-selector,
+    ngx-player {
       width: 100%;
       border: none;
     }

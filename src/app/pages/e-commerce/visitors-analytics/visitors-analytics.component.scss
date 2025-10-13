@@ -1,13 +1,13 @@
-@import '../../../@theme/styles/themes';
-@import 'bootstrap/scss/mixins/breakpoints';
-@import '@nebular/theme/styles/global/breakpoints';
+@use "@nebular/theme/styles/global/breakpoints" as nebular-breakpoints;
+@use "@nebular/theme/styles/theming" as *;
+@use "themes" as *;
 
 @include nb-install-component() {
   position: relative;
   display: block;
-  overflow: hidden;
 
   nb-card {
+    overflow: hidden;
     position: relative;
   }
 
@@ -39,7 +39,7 @@
     margin-bottom: 2.125rem;
   }
 
-  @include media-breakpoint-down(is) {
+  @include nebular-breakpoints.media-breakpoint-down(is) {
     ngx-legend-chart {
       ::ng-deep .legends {
         padding-left: 0;

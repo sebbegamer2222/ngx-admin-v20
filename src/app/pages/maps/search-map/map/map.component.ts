@@ -1,13 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PositionModel } from '../entity/position.model';
+import { Component, Input, OnInit } from "@angular/core";
+import { GoogleMap, MapMarker } from "@angular/google-maps";
+import { PositionModel } from "../entity/position.model";
 
 @Component({
-  selector: 'ngx-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  selector: "ngx-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.scss"],
+  imports: [GoogleMap, MapMarker],
 })
 export class MapComponent implements OnInit {
-  position: PositionModel = null;
+  position: PositionModel | null = null;
   zoom: number = 1;
 
   @Input()
@@ -20,11 +22,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     // set up current location
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.searchedPosition = new PositionModel(
           position.coords.latitude,
-          position.coords.longitude,
+          position.coords.longitude
         );
       });
     }

@@ -1,47 +1,52 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../../@core/utils';
-import { ElectricityChart } from '../../../../@core/data/electricity';
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { ElectricityChart } from "@app/core/data/electricity";
+import { LayoutService } from "@app/core/utils";
+import { NbThemeService } from "@nebular/theme";
+import { EChartsOption, graphic } from "echarts";
+import { NgxEchartsModule } from "ngx-echarts";
+import { delay, takeWhile } from "rxjs/operators";
 
 @Component({
-  selector: 'ngx-electricity-chart',
-  styleUrls: ['./electricity-chart.component.scss'],
+  selector: "ngx-electricity-chart",
+  styleUrls: ["./electricity-chart.component.scss"],
   template: `
-    <div echarts
-         [options]="option"
-         [merge]="option"
-         class="echart"
-         (chartInit)="onChartInit($event)">
-    </div>
+    <div
+      echarts
+      [options]="option"
+      [merge]="option"
+      class="echart"
+      (chartInit)="onChartInit($event)"
+    ></div>
   `,
+  imports: [NgxEchartsModule],
 })
-export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
-
+export class ElectricityChartComponent implements OnInit, OnDestroy {
   private alive = true;
 
-  @Input() data: ElectricityChart[];
+  @Input() data: ElectricityChart[] = [];
 
-  option: any;
+  option!: EChartsOption;
   echartsIntance: any;
 
-  constructor(private theme: NbThemeService,
-              private layoutService: LayoutService) {
-    this.layoutService.onSafeChangeLayoutSize()
-      .pipe(
-        takeWhile(() => this.alive),
-      )
+  constructor(
+    private theme: NbThemeService,
+    private layoutService: LayoutService
+  ) {
+    this.layoutService
+      .onSafeChangeLayoutSize()
+      .pipe(takeWhile(() => this.alive))
       .subscribe(() => this.resizeChart());
   }
 
-  ngAfterViewInit(): void {
-    this.theme.getJsTheme()
+  ngOnInit(): void {
+    this.theme
+      .getJsTheme()
       .pipe(
         takeWhile(() => this.alive),
-        delay(1),
+        delay(1)
       )
-      .subscribe(config => {
-        const eTheme: any = config.variables.electricity;
+      .subscribe((config) => {
+        const eTheme: any = config.variables?.electricity;
 
         this.option = {
           grid: {
@@ -51,9 +56,9 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
             bottom: 80,
           },
           tooltip: {
-            trigger: 'axis',
+            trigger: "axis",
             axisPointer: {
-              type: 'line',
+              type: "line",
               lineStyle: {
                 color: eTheme.tooltipLineColor,
                 width: eTheme.tooltipLineWidth,
@@ -64,18 +69,18 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
               fontSize: 20,
               fontWeight: eTheme.tooltipFontWeight,
             },
-            position: 'top',
+            position: "top",
             backgroundColor: eTheme.tooltipBg,
             borderColor: eTheme.tooltipBorderColor,
             borderWidth: 1,
-            formatter: '{c0} kWh',
+            formatter: "{c0} kWh",
             extraCssText: eTheme.tooltipExtraCss,
           },
           xAxis: {
-            type: 'category',
+            type: "category",
             boundaryGap: false,
             offset: 25,
-            data: this.data.map(i => i.label),
+            data: this.data.map((i) => i.label),
             axisTick: {
               show: false,
             },
@@ -86,12 +91,12 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
             axisLine: {
               lineStyle: {
                 color: eTheme.axisLineColor,
-                width: '2',
+                width: 2,
               },
             },
           },
           yAxis: {
-            boundaryGap: [0, '5%'],
+            boundaryGap: [0, "5%"],
             axisLine: {
               show: false,
             },
@@ -105,84 +110,84 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
               show: true,
               lineStyle: {
                 color: eTheme.yAxisSplitLine,
-                width: '1',
+                width: 1,
               },
             },
           },
           series: [
             {
-              type: 'line',
+              type: "line",
               smooth: true,
               symbolSize: 20,
-              itemStyle: {
-                normal: {
-                  opacity: 0,
-                },
-                emphasis: {
-                  color: '#ffffff',
+              emphasis: {
+                itemStyle: {
+                  color: "#ffffff",
                   borderColor: eTheme.itemBorderColor,
                   borderWidth: 2,
                   opacity: 1,
                 },
               },
               lineStyle: {
-                normal: {
-                  width: eTheme.lineWidth,
-                  type: eTheme.lineStyle,
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                width: eTheme.lineWidth,
+                type: eTheme.lineStyle,
+                color: new graphic.LinearGradient(0, 0, 0, 1, [
+                  {
                     offset: 0,
                     color: eTheme.lineGradFrom,
-                  }, {
+                  },
+                  {
                     offset: 1,
                     color: eTheme.lineGradTo,
-                  }]),
-                  shadowColor: eTheme.lineShadow,
-                  shadowBlur: 6,
-                  shadowOffsetY: 12,
-                },
+                  },
+                ]),
+                shadowColor: eTheme.lineShadow,
+                shadowBlur: 6,
+                shadowOffsetY: 12,
               },
               areaStyle: {
-                normal: {
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                color: new graphic.LinearGradient(0, 0, 0, 1, [
+                  {
                     offset: 0,
                     color: eTheme.areaGradFrom,
-                  }, {
+                  },
+                  {
                     offset: 1,
                     color: eTheme.areaGradTo,
-                  }]),
-                },
+                  },
+                ]),
               },
-              data: this.data.map(i => i.value),
+              data: this.data.map((i) => i.value),
             },
 
             {
-              type: 'line',
+              type: "line",
               smooth: true,
-              symbol: 'none',
+              symbol: "none",
               lineStyle: {
-                normal: {
-                  width: eTheme.lineWidth,
-                  type: eTheme.lineStyle,
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                width: eTheme.lineWidth,
+                type: eTheme.lineStyle,
+                color: new graphic.LinearGradient(0, 0, 0, 1, [
+                  {
                     offset: 0,
                     color: eTheme.lineGradFrom,
-                  }, {
+                  },
+                  {
                     offset: 1,
                     color: eTheme.lineGradTo,
-                  }]),
-                  shadowColor: eTheme.shadowLineDarkBg,
-                  shadowBlur: 14,
-                  opacity: 1,
-                },
+                  },
+                ]),
+                shadowColor: eTheme.shadowLineDarkBg,
+                shadowBlur: 14,
+                opacity: 1,
               },
-              data: this.data.map(i => i.value),
+              data: this.data.map((i) => i.value),
             },
           ],
         };
-    });
+      });
   }
 
-  onChartInit(echarts) {
+  onChartInit(echarts: any) {
     this.echartsIntance = echarts;
   }
 

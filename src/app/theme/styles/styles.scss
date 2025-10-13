@@ -1,0 +1,48 @@
+@use "@nebular/theme/styles/globals" as nebular;
+@use "@nebular/auth/styles/globals" as *;
+@use "bootstrap/scss/bootstrap" as *;
+@use "nebular-icons/scss/nebular-icons" as *;
+
+// loading progress bar theme
+@use "./pace.theme" as *;
+
+// layout and overrides
+@use "./layout" as *;
+@use "./overrides" as *;
+@use "./variables" as *;
+
+// themes - our custom or/and out of the box themes
+@use "themes" as *;
+
+// material themes
+@use "./material/angular-material" as *;
+@use "./material/material-overrides" as *;
+
+// Google Fonts - this stays as @import since it's a CSS import, not a Sass import
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800&display=swap");
+
+// install the framework and custom global styles
+@include nb-install() {
+  @include angular-material();
+
+  // framework global styles
+  @include nebular.nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+  @include material-overrides();
+}
+
+/**
+  * Fix the style conflict caused by Angular CDK's overlay positioning logic. When a dropdown (like mat-select or nb-select) opens, Angular CDK may set position: fixed and adjust the top property on the scroll-blocking element (.cdk-global-scrollblock) to prevent background scrolling while the overlay is open. When the overlay closes, it should remove these styles.
+  * If the top property is not reset after closing, it can cause layout issues. This is usually a bug or a side effect of custom theme integrations or global styles.
+  * We force the top property to 0 to ensure the layout remains consistent after closing overlays.
+ */
+html.cdk-global-scrollblock {
+  top: 0 !important;
+}

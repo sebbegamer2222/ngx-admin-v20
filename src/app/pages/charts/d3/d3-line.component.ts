@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component, OnDestroy } from "@angular/core";
+import { NbThemeService } from "@nebular/theme";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 @Component({
-  selector: 'ngx-d3-line',
+  selector: "ngx-d3-line",
   template: `
     <ngx-charts-line-chart
       [scheme]="colorScheme"
@@ -13,47 +14,49 @@ import { NbThemeService } from '@nebular/theme';
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
       [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel">
+      [yAxisLabel]="yAxisLabel"
+    >
     </ngx-charts-line-chart>
   `,
+  imports: [NgxChartsModule],
 })
 export class D3LineComponent implements OnDestroy {
   multi = [
     {
-      name: 'Germany',
+      name: "Germany",
       series: [
         {
-          name: '2010',
+          name: "2010",
           value: 7300,
         },
         {
-          name: '2011',
+          name: "2011",
           value: 8940,
         },
       ],
     },
     {
-      name: 'USA',
+      name: "USA",
       series: [
         {
-          name: '2010',
+          name: "2010",
           value: 7870,
         },
         {
-          name: '2011',
+          name: "2011",
           value: 8270,
         },
       ],
     },
     {
-      name: 'France',
+      name: "France",
       series: [
         {
-          name: '2010',
+          name: "2010",
           value: 5002,
         },
         {
-          name: '2011',
+          name: "2011",
           value: 5800,
         },
       ],
@@ -63,17 +66,23 @@ export class D3LineComponent implements OnDestroy {
   showXAxis = true;
   showYAxis = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = "Country";
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = "Population";
   colorScheme: any;
   themeSubscription: any;
 
   constructor(private theme: NbThemeService) {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+    this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
       const colors: any = config.variables;
       this.colorScheme = {
-        domain: [colors.primaryLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
+        domain: [
+          colors.primaryLight,
+          colors.infoLight,
+          colors.successLight,
+          colors.warningLight,
+          colors.dangerLight,
+        ],
       };
     });
   }

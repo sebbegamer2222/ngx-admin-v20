@@ -1,18 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'ngx-chart-panel-summary',
-  styleUrls: ['./chart-panel-summary.component.scss'],
+  selector: "ngx-chart-panel-summary",
+  styleUrls: ["./chart-panel-summary.component.scss"],
   template: `
     <div class="summary-container">
-      <div *ngFor="let item of summary">
+      @for (item of summary; track $index) {
+      <div>
         <div>{{ item.title }}</div>
         <div class="h6">{{ item.value }}</div>
       </div>
+      }
     </div>
   `,
 })
 export class ChartPanelSummaryComponent {
-  @Input() summary: {title: string; value: number}[];
+  @Input() summary: { title: string; value: number }[] = [];
 }
-

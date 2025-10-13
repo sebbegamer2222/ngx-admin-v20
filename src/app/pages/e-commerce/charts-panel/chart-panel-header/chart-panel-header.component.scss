@@ -1,6 +1,6 @@
-@import '../../../../@theme/styles/themes';
-@import 'bootstrap/scss/mixins/breakpoints';
-@import '@nebular/theme/styles/global/breakpoints';
+@use "@nebular/theme/styles/theming" as *;
+@use "@nebular/theme/styles/global/breakpoints" as nebular-breakpoints;
+@use "themes" as *;
 
 @include nb-install-component() {
   padding: 1.5rem 4.5rem;
@@ -16,7 +16,7 @@
     @include nb-rtl(padding-right, 0.5rem);
   }
 
-  @include media-breakpoint-up(md) {
+  @include nebular-breakpoints.media-breakpoint-up(md) {
     .period-select {
       @include nb-ltr(margin-left, auto);
       @include nb-rtl(margin-right, auto);

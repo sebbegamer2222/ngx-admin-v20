@@ -1,34 +1,34 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { NbThemeService } from "@nebular/theme";
+import { EChartsOption } from "echarts";
+import { NgxEchartsModule } from "ngx-echarts";
 
 @Component({
-  selector: 'ngx-echarts-bar-animation',
-  template: `
-    <div echarts [options]="options" class="echart"></div>
-  `,
+  selector: "ngx-echarts-bar-animation",
+  template: ` <div echarts [options]="options" class="echart"></div> `,
+  imports: [NgxEchartsModule],
 })
-export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
+export class EchartsBarAnimationComponent implements OnInit, OnDestroy {
+  options!: EChartsOption;
   themeSubscription: any;
 
-  constructor(private theme: NbThemeService) {
-  }
+  constructor(private theme: NbThemeService) {}
 
-  ngAfterViewInit() {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-      const xAxisData = [];
-      const data1 = [];
-      const data2 = [];
+  ngOnInit() {
+    this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
+      const xAxisData: any[] = [];
+      const data1: any[] = [];
+      const data2: any[] = [];
 
       const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const echarts: any = config.variables?.echarts;
 
       this.options = {
         backgroundColor: echarts.bg,
         color: [colors.primaryLight, colors.infoLight],
         legend: {
-          data: ['bar', 'bar2'],
-          align: 'left',
+          data: ["bar", "bar2"],
+          align: "left",
           textStyle: {
             color: echarts.textColor,
           },
@@ -46,9 +46,7 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
               },
             },
             axisLabel: {
-              textStyle: {
-                color: echarts.textColor,
-              },
+              color: echarts.textColor,
             },
           },
         ],
@@ -65,32 +63,30 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
               },
             },
             axisLabel: {
-              textStyle: {
-                color: echarts.textColor,
-              },
+              color: echarts.textColor,
             },
           },
         ],
         series: [
           {
-            name: 'bar',
-            type: 'bar',
+            name: "bar",
+            type: "bar",
             data: data1,
-            animationDelay: idx => idx * 10,
+            animationDelay: (idx: number) => idx * 10,
           },
           {
-            name: 'bar2',
-            type: 'bar',
+            name: "bar2",
+            type: "bar",
             data: data2,
-            animationDelay: idx => idx * 10 + 100,
+            animationDelay: (idx: number) => idx * 10 + 100,
           },
         ],
-        animationEasing: 'elasticOut',
-        animationDelayUpdate: idx => idx * 5,
+        animationEasing: "elasticOut",
+        animationDelayUpdate: (idx: number) => idx * 5,
       };
 
       for (let i = 0; i < 100; i++) {
-        xAxisData.push('Category ' + i);
+        xAxisData.push("Category " + i);
         data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
         data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
       }

@@ -1,44 +1,43 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { NbThemeService } from "@nebular/theme";
+import { EChartsOption } from "echarts";
+import { NgxEchartsModule } from "ngx-echarts";
 
 @Component({
-  selector: 'ngx-echarts-bar',
-  template: `
-    <div echarts [options]="options" class="echart"></div>
-  `,
+  selector: "ngx-echarts-bar",
+  template: ` <div echarts [options]="options" class="echart"></div> `,
+  imports: [NgxEchartsModule],
 })
-export class EchartsBarComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
+export class EchartsBarComponent implements OnInit, OnDestroy {
+  options!: EChartsOption;
   themeSubscription: any;
 
-  constructor(private theme: NbThemeService) {
-  }
+  constructor(private theme: NbThemeService) {}
 
-  ngAfterViewInit() {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-
+  ngOnInit() {
+    this.themeSubscription = this.theme.getJsTheme().subscribe((config) => {
       const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const echarts: any = config.variables?.echarts;
 
       this.options = {
         backgroundColor: echarts.bg,
         color: [colors.primaryLight],
         tooltip: {
-          trigger: 'axis',
+          trigger: "axis",
           axisPointer: {
-            type: 'shadow',
+            type: "shadow",
           },
         },
         grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
           containLabel: true,
         },
         xAxis: [
           {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            type: "category",
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
             axisTick: {
               alignWithLabel: true,
             },
@@ -48,15 +47,13 @@ export class EchartsBarComponent implements AfterViewInit, OnDestroy {
               },
             },
             axisLabel: {
-              textStyle: {
-                color: echarts.textColor,
-              },
+              color: echarts.textColor,
             },
           },
         ],
         yAxis: [
           {
-            type: 'value',
+            type: "value",
             axisLine: {
               lineStyle: {
                 color: echarts.axisLineColor,
@@ -68,17 +65,15 @@ export class EchartsBarComponent implements AfterViewInit, OnDestroy {
               },
             },
             axisLabel: {
-              textStyle: {
-                color: echarts.textColor,
-              },
+              color: echarts.textColor,
             },
           },
         ],
         series: [
           {
-            name: 'Score',
-            type: 'bar',
-            barWidth: '60%',
+            name: "Score",
+            type: "bar",
+            barWidth: "60%",
             data: [10, 52, 200, 334, 390, 330, 220],
           },
         ],
