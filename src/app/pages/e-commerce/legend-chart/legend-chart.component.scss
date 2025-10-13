@@ -1,0 +1,31 @@
+@use "@nebular/theme/styles/global/breakpoints" as nebular-breakpoints;
+@use "@nebular/theme/styles/theming" as *;
+@use "themes" as *;
+
+@include nb-install-component() {
+  display: flex;
+  flex-wrap: wrap;
+
+  .legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:not(:last-child) {
+      @include nb-ltr(margin-right, 1rem);
+      @include nb-rtl(margin-left, 1rem);
+    }
+  }
+
+  .legend-item-color {
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 0.2rem;
+  }
+
+  .legend-title {
+    @include nb-rtl(padding-right, 0.75rem);
+    white-space: nowrap;
+  }
+}
