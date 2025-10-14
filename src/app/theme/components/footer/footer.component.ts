@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
+import { NbIconModule } from "@nebular/theme";
 
 @Component({
   selector: "ngx-footer",
   styleUrls: ["./footer.component.scss"],
+  imports: [NbIconModule],
   template: `
     <span class="created-by">
       Powered by
@@ -21,10 +23,12 @@ import { Component } from "@angular/core";
         href="https://github.com/NguyenPham1805"
         target="_blank"
         class="ion ion-social-github"
-      ></a>
-      <a href="#" target="_blank" class="ion ion-social-facebook"></a>
+      >
+        <nb-icon icon="github"></nb-icon>
+      </a>
+      <!-- <a href="#" target="_blank" class="ion ion-social-facebook"></a>
       <a href="#" target="_blank" class="ion ion-social-twitter"></a>
-      <a href="#" target="_blank" class="ion ion-social-linkedin"></a>
+      <a href="#" target="_blank" class="ion ion-social-linkedin"></a> -->
     </div>
   `,
 })
