@@ -5,12 +5,23 @@ import { Component } from "@angular/core";
   styleUrls: ["./footer.component.scss"],
   template: `
     <span class="created-by">
-      Created with ♥ by
-      <b><a href="https://akveo.page.link/8V2f" target="_blank">Akveo</a></b>
-      2019
+      Powered by
+      <b>
+        <a
+          href="https://github.com/NguyenPham1805/ngx-admin-v20"
+          target="_blank"
+        >
+          Trung Nguyen
+        </a>
+      </b>
+      2025
     </span>
     <div class="socials">
-      <a href="#" target="_blank" class="ion ion-social-github"></a>
+      <a
+        href="https://github.com/NguyenPham1805"
+        target="_blank"
+        class="ion ion-social-github"
+      ></a>
       <a href="#" target="_blank" class="ion ion-social-facebook"></a>
       <a href="#" target="_blank" class="ion ion-social-twitter"></a>
       <a href="#" target="_blank" class="ion ion-social-linkedin"></a>
